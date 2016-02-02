@@ -17,26 +17,37 @@ public class Hero : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Vector3 direction = new Vector3();
+
 		if(Input.GetKeyDown(KeyCode.Space)){
 			InvokeRepeating("Fire", 0.0001f, firingRate);
 		}
 		if(Input.GetKeyUp(KeyCode.Space)){
 			CancelInvoke("Fire");
 		}
-		if(Input.GetKey(KeyCode.LeftArrow)){
-			transform.position += Vector3.left * speed * Time.deltaTime;
-		}else if (Input.GetKey(KeyCode.RightArrow)){
-			transform.position += Vector3.right * speed * Time.deltaTime; 
+
+
+		if (Input.GetKey (KeyCode.LeftArrow)) {
+			//transform.position += Vector3.left * speed * Time.deltaTime;
+			direction += Vector3.left;
+		} else if (Input.GetKey (KeyCode.RightArrow)) {
+			direction += Vector3.right; 
+		} else if (Input.GetKey (KeyCode.UpArrow)) {
+			direction += Vector3.up; 
+		} else if (Input.GetKey (KeyCode.DownArrow)) {
+			direction += Vector3.down; 
 		}
-		
-		// restrict the player to the gamespace
-		float newX = Mathf.Clamp(transform.position.x, xmin, xmax);
-		transform.position = new Vector3(newX, transform.position.y, transform.position.z);
+
+// restrict the player to the gamespace
+		float newX = Mathf.Clamp(direction.x, 0.5f, 20f);
+		//transform.position = new Vector3(newX, direction.y, direction.z);
+		transform.Translate (direction.normalized * speed * Time.deltaTime);
 	}
 
 	void Fire(){
 		GameObject beam = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
 		//beam.rigidbody2D.velocity = new Vector3(0, projectileSpeed, 0);
+		beam.rigidbody2D.velocity = Vector3.up * projectileSpeed;
 		//AudioSource.PlayClipAtPoint(fireSound, transform.position);
 	}
 }

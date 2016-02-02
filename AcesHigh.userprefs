@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Hero.cs">
     <Files>
-      <File FileName="Assets\Hero.cs" Line="7" Column="10" />
+      <File FileName="..\..\..\ForeverPong\Assets\Ball.cs" Line="1" Column="1" />
+      <File FileName="Assets\Hero.cs" Line="39" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
