@@ -50,4 +50,6 @@ public class Hero : MonoBehaviour {
 		beam.rigidbody2D.velocity = Vector3.up * projectileSpeed;
 		//AudioSource.PlayClipAtPoint(fireSound, transform.position);
 	}
+
+
 }
