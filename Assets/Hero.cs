@@ -48,7 +48,8 @@ public class Hero : MonoBehaviour {
 		GameObject beam = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
 		//beam.rigidbody2D.velocity = new Vector3(0, projectileSpeed, 0);
 		beam.rigidbody2D.velocity = Vector3.up * projectileSpeed;
-		//AudioSource.PlayClipAtPoint(fireSound, transform.position);
+		//AudioSource.PlayClipAtPoint (fireSound);
+		audio.Play ();
 	}
 
 
