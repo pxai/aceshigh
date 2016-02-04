@@ -3,19 +3,24 @@ using System.Collections;
 
 public class Ship : MonoBehaviour {
 	public GameObject explosion;
+	public GameObject projectile;
 	public AudioClip[] explosions = new AudioClip[4];
 	private int life = 3;
+	private float fireRate = 0.3f;
 
 	// Use this for initialization
 	void Start () {
 		this.rigidbody2D.velocity = Vector3.down * 5;
-
+		fire ();
 		//Destroy(gameObject, 6);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		float limit = fireRate * Time.deltaTime;
+		if (Random.value < limit) {
+			fire ();
+		}
 	}
 
 	void OnTriggerEnter2D (Collider2D collider) {
@@ -35,6 +40,15 @@ public class Ship : MonoBehaviour {
 				Destroy(gameObject);
 			}
 		}
+	}
+
+	void fire () {
+		Vector3 position = transform.position;
+		position.z = 0;
+
+		GameObject beam = Instantiate(projectile, position, Quaternion.identity) as GameObject;
+
+		beam.rigidbody2D.velocity = Vector3.down * 10;
 	}
 
 	void playRandom(){ // call this function to play a random sound
