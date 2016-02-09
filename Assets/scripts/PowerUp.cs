@@ -8,7 +8,7 @@ public class PowerUp : MonoBehaviour {
 		if (collider.gameObject.tag.Equals ("Player")) {
 			Debug.Log ("Power up!!" + gameObject.name);
 			switch (gameObject.name) {
-			case "powerup1" : powerUp1Action();
+			case "powerup1" : powerUp2Action();
 				break;
 			case "powerup2" : powerUp2Action();
 				break;
@@ -27,6 +27,7 @@ public class PowerUp : MonoBehaviour {
 	void powerUp2Action () {
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
 		foreach (GameObject enemy in enemies) {
+			Debug.Log ("Destroying enemy");
 			Instantiate(explosion, enemy.transform.position, enemy.transform.rotation);
 			Destroy (enemy);
 		}

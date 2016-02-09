@@ -3,21 +3,23 @@ using System.Collections;
 
 public class Ship : MonoBehaviour {
 	public GameObject explosion;
-	private int life = 3;
+
 	public GameObject projectile;
-	private int projectileSpeed = 8;
-	private float foeFireRate = 0.4f;
+	public AudioClip[] explosions = new AudioClip[4];
+	private int life = 3;
+	private float fireRate = 0.3f;
 
 	// Use this for initialization
 	void Start () {
+		this.rigidbody2D.velocity = Vector3.down * 5;
 		fire ();
-		// In 6 sec the ship will be autodestroyed
-		Destroy(gameObject,10);
+		//Destroy(gameObject, 6);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		float limit = foeFireRate * Time.deltaTime;
+
+		float limit = fireRate * Time.deltaTime;
 		if (Random.value < limit) {
 			fire ();
 
@@ -38,14 +40,18 @@ public class Ship : MonoBehaviour {
 		}
 	}
 
+	void fire () {
+		Vector3 position = transform.position;
+		position.z = 0;
+		GameObject beam = Instantiate(projectile, position, Quaternion.identity) as GameObject;
+		beam.rigidbody2D.velocity = Vector3.down * 10;
+	}
+
 	void playRandom(){ // call this function to play a random sound
 		if (audio.isPlaying) return; // don't play a new sound while the last hasn't finished
 
 		audio.Play();
 	}
 
-	void fire(){
-		GameObject beam = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
-		beam.rigidbody2D.velocity = Vector3.down * projectileSpeed;
-	}
+
 }
