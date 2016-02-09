@@ -46,12 +46,18 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Hero.cs" />
-     <Compile Include="Assets\HeroFire.cs" />
-     <Compile Include="Assets\Ship.cs" />
-     <Compile Include="Assets\ShipController.cs" />
      <Compile Include="Assets\scripts\GameStatus.cs" />
+     <Compile Include="Assets\scripts\GreenEnemyFormation.cs" />
+     <Compile Include="Assets\scripts\GreyFoe.cs" />
+     <Compile Include="Assets\scripts\GreyFoeController.cs" />
+     <Compile Include="Assets\scripts\Hero.cs" />
+     <Compile Include="Assets\scripts\HeroFire.cs" />
      <Compile Include="Assets\scripts\LevelLoader.cs" />
+     <Compile Include="Assets\scripts\Position.cs" />
+     <Compile Include="Assets\scripts\PowerUp.cs" />
+     <Compile Include="Assets\scripts\PowerUpController.cs" />
+     <Compile Include="Assets\scripts\Ship.cs" />
+     <Compile Include="Assets\scripts\ShipController.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.7.0/Standalone/UnityEngine.UI.dll</HintPath>
  </Reference>
