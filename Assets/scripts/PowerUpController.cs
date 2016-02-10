@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PowerUpController : MonoBehaviour {
 	public GameObject[] powerUps;
-	private float powerUpsPerSecond = 1f;
+	private float powerUpsPerSecond = 0.1f;
 
 	// Use this for initialization
 	void Start () {

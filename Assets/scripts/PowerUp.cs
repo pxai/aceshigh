@@ -25,8 +25,10 @@ public class PowerUp : MonoBehaviour {
 	}
 
 	void powerUp2Action () {
-		GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
-		foreach (GameObject enemy in enemies) {
+		//GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+		GreyFoe[] enemies = GameObject.FindObjectsOfType(typeof(GreyFoe)) as GreyFoe[];
+		Debug.Log ("Enemies: " + enemies.Length);
+		foreach (GreyFoe enemy in enemies) {
 			Debug.Log ("Destroying enemy");
 			Instantiate(explosion, enemy.transform.position, enemy.transform.rotation);
 			Destroy (enemy);

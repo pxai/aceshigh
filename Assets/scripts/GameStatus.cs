@@ -27,8 +27,17 @@ public class GameStatus : MonoBehaviour {
 		Debug.Log ("Modificado a " + maxHits);
 	}
 
-	public void spawnHero (Vector3 position) {
-		GameObject freshHero = Instantiate (hero, position, Quaternion.identity) as GameObject;
 
+	public void respawn (Vector3 position) {
+		StartCoroutine (spawnDelayed (position));
+	}
+
+	private IEnumerator spawnDelayed (Vector3 position) {
+		yield return new WaitForSeconds(3f);
+		spawnHero (position);
+	}
+
+	public void  spawnHero (Vector3 position) {
+		GameObject freshHero = Instantiate (hero, position, Quaternion.identity) as GameObject;
 	}
 }

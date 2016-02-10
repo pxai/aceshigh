@@ -4,7 +4,7 @@ using System.Collections;
 public class GreyFoe : MonoBehaviour {
 	public GameObject explosion;
 	public GameObject projectile;
-	private int projectileSpeed = 10;
+	private int projectileSpeed =3;
 	private float foeFireRate = 0.9f;
 	
 	// Use this for initialization
@@ -34,7 +34,17 @@ public class GreyFoe : MonoBehaviour {
 	
 
 	void fire(){
+		Hero hero = GameObject.FindObjectOfType (typeof(Hero)) as Hero;
+		//Debug.Log (hero.transform.position.ToString());
 		GameObject beam = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
-		beam.rigidbody2D.velocity = Vector3.down * projectileSpeed;
+		//beam.rigidbody2D.velocity = Vector3.down * projectileSpeed;
+
+		//Vector2 position = Vector2.MoveTowards(transform.position, hero.transform.position,1) * projectileSpeed;
+		//beam.rigidbody2D.velocity = Vector2.MoveTowards(transform.position, hero.transform.position, projectileSpeed * Time.deltaTime);
+		Vector3 toTarget = hero.rigidbody2D.position - transform.rigidbody2D.position ;
+		//rigidbody.velocity = toTarget.normalized * projectileSpeed;
+		Vector3.Normalize (toTarget);
+		//beam.transform.forward = toTarget.normalized;
+		beam.rigidbody2D.velocity = toTarget * projectileSpeed;
 	}
 }

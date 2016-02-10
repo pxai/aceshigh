@@ -81,7 +81,7 @@ public class Hero : MonoBehaviour {
 			Destroy (gameObject, 2);
 			heroAnimator.SetBool ("Dead", true);
 			GameStatus gameStatus = GameObject.FindObjectOfType (typeof(GameStatus)) as GameStatus;
-			gameStatus.spawnHero (gameObject.transform.position);
+			gameStatus.respawn (gameObject.transform.position);
 		} else {
 			Debug.Log("Game Over");
 			Application.LoadLevel("GameOver");
