@@ -17,8 +17,7 @@ public class HeroFire : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D collider) {
-		if (collider.gameObject.tag.Equals ("Playe")) {
-			Debug.Log ("Hit!!");
+		if (collider.gameObject.tag.Equals ("enemy")) {
 			GameObject hitExplosion = Instantiate (explosion, transform.position, Quaternion.identity) as GameObject;
 			int scale = Random.Range(1,5);
 			hitExplosion.transform.position = gameObject.transform.position;

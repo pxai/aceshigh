@@ -1,14 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Position.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Hero.cs">
     <Files>
-      <File FileName="Assets\scripts\Ship.cs" Line="58" Column="1" />
-      <File FileName="Assets\scripts\PowerUp.cs" Line="30" Column="42" />
-      <File FileName="Assets\scripts\GreyFoe.cs" Line="35" Column="1" />
-      <File FileName="Assets\scripts\Hero.cs" Line="82" Column="1" />
-      <File FileName="Assets\scripts\GameStatus.cs" Line="36" Column="36" />
-      <File FileName="Assets\scripts\PowerUpController.cs" Line="6" Column="39" />
-      <File FileName="Assets\scripts\Position.cs" Line="9" Column="54" />
+      <File FileName="Assets\scripts\Ship.cs" Line="41" Column="3" />
+      <File FileName="Assets\scripts\PowerUp.cs" Line="42" Column="117" />
+      <File FileName="Assets\scripts\GreyFoe.cs" Line="17" Column="10" />
+      <File FileName="Assets\scripts\Hero.cs" Line="59" Column="58" />
+      <File FileName="Assets\scripts\GameStatus.cs" Line="41" Column="90" />
+      <File FileName="Assets\scripts\PowerUpController.cs" Line="10" Column="3" />
+      <File FileName="Assets\scripts\Position.cs" Line="12" Column="1" />
+      <File FileName="Assets\scripts\HeroFire.cs" Line="20" Column="50" />
+      <File FileName="Assets\scripts\GreyFoeController.cs" Line="21" Column="104" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

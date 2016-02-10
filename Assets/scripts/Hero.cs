@@ -16,6 +16,7 @@ public class Hero : MonoBehaviour {
 
 	public static int lifes = 3;
 	private Animator heroAnimator;
+	private bool multifire = false;
 
 
 	// Use this for initialization
@@ -26,6 +27,7 @@ public class Hero : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		if (heroAnimator.GetCurrentAnimatorStateInfo(0).IsName("Flying")) {
 			status = FLYING_STATUS;
 		}
@@ -33,6 +35,8 @@ public class Hero : MonoBehaviour {
 		Vector3 direction = new Vector3();
 
 		if(Input.GetKeyDown(KeyCode.Space)){
+			//Invokes the method methodName in time seconds, 
+			//then repeatedly every repeatRate seconds.
 			InvokeRepeating("Fire", 0.0001f, firingRate);
 		}
 		if(Input.GetKeyUp(KeyCode.Space)){
@@ -41,7 +45,6 @@ public class Hero : MonoBehaviour {
 
 
 		if (Input.GetKey (KeyCode.LeftArrow)) {
-			//transform.position += Vector3.left * speed * Time.deltaTime;
 			direction += Vector3.left;
 		} else if (Input.GetKey (KeyCode.RightArrow)) {
 			direction += Vector3.right; 
@@ -52,22 +55,43 @@ public class Hero : MonoBehaviour {
 
 		}
 
-// restrict the player to the gamespace
-		float newX = Mathf.Clamp(direction.x, 0.5f, 20f);
-		//transform.position = new Vector3(newX, direction.y, direction.z);
+		// restrict the player to the gamespace
+		float newX = Mathf.Clamp(transform.position.x, 0.5f, 16f);
+		float newY = Mathf.Clamp(transform.position.y, 0f, 10f);
+		transform.position = new Vector3(newX, newY, direction.z);
 		transform.Translate (direction.normalized * speed * Time.deltaTime);
 	}
 
 	void Fire(){
-		GameObject beam = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
-		beam.rigidbody2D.velocity = Vector3.up * projectileSpeed;
+		if (status != FLYING_STATUS) { return;}
+
+		if (multifire) {
+			GameObject beam1 = Instantiate (projectile, transform.position, Quaternion.identity) as GameObject;
+			GameObject beam2 = Instantiate (projectile, transform.position, Quaternion.identity) as GameObject;
+			GameObject beam3 = Instantiate (projectile, transform.position, Quaternion.identity) as GameObject;
+			beam1.rigidbody2D.velocity = Vector3.up * projectileSpeed;
+			beam2.rigidbody2D.velocity = new Vector3(-0.2f,1,0) * projectileSpeed;
+			beam3.rigidbody2D.velocity = new Vector3(0.2f,1,0) * projectileSpeed;
+
+		} else {
+			GameObject beam = Instantiate (projectile, transform.position, Quaternion.identity) as GameObject;
+			beam.rigidbody2D.velocity = Vector3.up * projectileSpeed;
+		}
 
 	}
 
+
+	public void setMultifire () {
+		Debug.Log ("Got multifire!!");
+		multifire = true;
+	}
+
 	void OnTriggerEnter2D (Collider2D collider) {
+		return;
 		if (collider.gameObject.tag.Equals ("enemyfire") 
 		    	&& status == FLYING_STATUS) {
 			heroAnimator.SetBool("Dead",true);
+			status = SPAWN_STATUS;
 			audio.Play ();
 			Debug.Log ("Hit! ");
 			lifes--;

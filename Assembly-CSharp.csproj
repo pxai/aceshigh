@@ -46,7 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\FoeFire.cs" />
+     <Compile Include="Assets\scripts\FoeFire.cs" />
      <Compile Include="Assets\scripts\GameStatus.cs" />
      <Compile Include="Assets\scripts\GreenEnemyFormation.cs" />
      <Compile Include="Assets\scripts\GreyFoe.cs" />

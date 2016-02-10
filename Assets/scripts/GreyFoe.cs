@@ -4,15 +4,20 @@ using System.Collections;
 public class GreyFoe : MonoBehaviour {
 	public GameObject explosion;
 	public GameObject projectile;
-	private int projectileSpeed =3;
-	private float foeFireRate = 0.9f;
-	
+	private float projectileSpeed = 0.5f;
+	private float foeFireRate = 0.2f;
+	private Animator greyFoeAnimator;
+
 	// Use this for initialization
 	void Start () {
+		// Avoid to add "(Clone)" to dynamically generated objects
+		name = name.Replace("(Clone)", "");
+		greyFoeAnimator = this.GetComponent<Animator>();
 		this.rigidbody2D.velocity = Vector3.down * 5;
-		fire ();
-		// In 6 sec the ship will be autodestroyed
-		Destroy(gameObject,3);
+		// In 8 sec the ship will be autodestroyed
+		Destroy(gameObject,8);
+		Invoke("turnAround", Random.Range (2,4));
+
 	}
 	
 	// Update is called once per frame
@@ -20,14 +25,20 @@ public class GreyFoe : MonoBehaviour {
 		float limit = foeFireRate * Time.deltaTime;
 		if (Random.value < limit) {
 			fire ();
-			
 		}
 	}
-	
+
+
+	void turnAround () {
+		Debug.Log ("Turning around");
+		greyFoeAnimator.SetBool("Turn",true);
+		this.rigidbody2D.velocity = Vector3.up * 5;
+		fire ();
+	}
+
 	void OnTriggerEnter2D (Collider2D collider) {
 		if (collider.gameObject.tag.Equals ("herofire")) {
 				Debug.Log("Plane destroyed!");
-				audio.Play ();
 				Destroy(gameObject);
 		}
 	}
@@ -35,16 +46,10 @@ public class GreyFoe : MonoBehaviour {
 
 	void fire(){
 		Hero hero = GameObject.FindObjectOfType (typeof(Hero)) as Hero;
-		//Debug.Log (hero.transform.position.ToString());
-		GameObject beam = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
-		//beam.rigidbody2D.velocity = Vector3.down * projectileSpeed;
 
-		//Vector2 position = Vector2.MoveTowards(transform.position, hero.transform.position,1) * projectileSpeed;
-		//beam.rigidbody2D.velocity = Vector2.MoveTowards(transform.position, hero.transform.position, projectileSpeed * Time.deltaTime);
+		GameObject beam = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
 		Vector3 toTarget = hero.rigidbody2D.position - transform.rigidbody2D.position ;
-		//rigidbody.velocity = toTarget.normalized * projectileSpeed;
 		Vector3.Normalize (toTarget);
-		//beam.transform.forward = toTarget.normalized;
 		beam.rigidbody2D.velocity = toTarget * projectileSpeed;
 	}
 }

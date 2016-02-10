@@ -11,9 +11,9 @@ public class Ship : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		this.rigidbody2D.velocity = Vector3.down * 5;
-		fire ();
-		//Destroy(gameObject, 6);
+		// Avoid to add "(Clone)" to dynamically generated objects
+		name = name.Replace("(Clone)", "");
+		this.rigidbody2D.velocity = Vector3.down * 3;
 	}
 	
 	// Update is called once per frame
@@ -50,7 +50,7 @@ public class Ship : MonoBehaviour {
 	void playRandom(){ // call this function to play a random sound
 		if (audio.isPlaying) return; // don't play a new sound while the last hasn't finished
 
-		audio.Play();
+		AudioSource.PlayClipAtPoint (explosions [Random.Range (0, explosions.Length - 1)], transform.position);
 	}
 
 
