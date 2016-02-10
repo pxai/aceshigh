@@ -26,6 +26,4 @@ public class HeroFire : MonoBehaviour {
 			Destroy (gameObject);
 		}
 	}
-
-	
 }

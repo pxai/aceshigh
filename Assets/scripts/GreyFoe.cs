@@ -4,8 +4,8 @@ using System.Collections;
 public class GreyFoe : MonoBehaviour {
 	public GameObject explosion;
 	public GameObject projectile;
-	private float projectileSpeed = 0.5f;
-	private float foeFireRate = 0.2f;
+	private float projectileSpeed = 5f;
+	private float foeFireRate = 0.1f;
 	private Animator greyFoeAnimator;
 
 	// Use this for initialization
@@ -49,7 +49,7 @@ public class GreyFoe : MonoBehaviour {
 
 		GameObject beam = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
 		Vector3 toTarget = hero.rigidbody2D.position - transform.rigidbody2D.position ;
-		Vector3.Normalize (toTarget);
-		beam.rigidbody2D.velocity = toTarget * projectileSpeed;
+
+		beam.rigidbody2D.velocity = toTarget.normalized * projectileSpeed;
 	}
 }
