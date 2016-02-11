@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class HeroFire : MonoBehaviour {
 	public GameObject explosion;
+	public Text scoreText;
+	public int score = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +23,10 @@ public class HeroFire : MonoBehaviour {
 		if (collider.gameObject.tag.Equals ("enemy")) {
 			GameObject hitExplosion = Instantiate (explosion, transform.position, Quaternion.identity) as GameObject;
 			int scale = Random.Range(1,5);
+
+			score++;
+			scoreText.text = score.ToString();
+
 			hitExplosion.transform.position = gameObject.transform.position;
 			hitExplosion.transform.localScale = new Vector3(scale,scale);
 			Destroy (hitExplosion, 0.5f);

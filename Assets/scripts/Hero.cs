@@ -28,6 +28,7 @@ public class Hero : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+
 		if (heroAnimator.GetCurrentAnimatorStateInfo(0).IsName("Flying")) {
 			status = FLYING_STATUS;
 		}
@@ -87,7 +88,7 @@ public class Hero : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D collider) {
-		return;
+		//return;
 		if (collider.gameObject.tag.Equals ("enemyfire") 
 		    	&& status == FLYING_STATUS) {
 			heroAnimator.SetBool("Dead",true);
