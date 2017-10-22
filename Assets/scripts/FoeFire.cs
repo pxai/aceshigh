@@ -15,7 +15,7 @@ public class FoeFire : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D collider) {
 		if (collider.gameObject.name =="hero") {
-			audio.Play();
+			GetComponent<AudioSource>().Play();
 			Debug.Log ("Hero Hit!");
 			Destroy(collider.gameObject);
 		}

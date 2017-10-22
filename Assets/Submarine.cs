@@ -15,9 +15,9 @@ public class Submarine : MonoBehaviour {
 		Hero hero = GameObject.FindObjectOfType (typeof(Hero)) as Hero;
 		
 		GameObject beam = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
-		Vector3 toTarget = hero.rigidbody2D.position - transform.rigidbody2D.position ;
+		Vector3 toTarget = hero.GetComponent<Rigidbody2D>().position - transform.GetComponent<Rigidbody2D>().position ;
 		
-		beam.rigidbody2D.velocity = toTarget * projectileSpeed;
+		beam.GetComponent<Rigidbody2D>().velocity = toTarget * projectileSpeed;
 	}
 
 	// Update is called once per frame

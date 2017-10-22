@@ -13,7 +13,7 @@ public class Ship : MonoBehaviour {
 	void Start () {
 		// Avoid to add "(Clone)" to dynamically generated objects
 		name = name.Replace("(Clone)", "");
-		this.rigidbody2D.velocity = Vector3.down * 3;
+		this.GetComponent<Rigidbody2D>().velocity = Vector3.down * 3;
 	}
 	
 	// Update is called once per frame
@@ -34,7 +34,7 @@ public class Ship : MonoBehaviour {
 
 			if (life < 0) {
 				Debug.Log("Ship destroyed!");
-				audio.Play ();
+				GetComponent<AudioSource>().Play ();
 				Destroy(gameObject);
 			}
 		}
@@ -44,11 +44,11 @@ public class Ship : MonoBehaviour {
 		Vector3 position = transform.position;
 		position.z = 0;
 		GameObject beam = Instantiate(projectile, position, Quaternion.identity) as GameObject;
-		beam.rigidbody2D.velocity = Vector3.down * 10;
+		beam.GetComponent<Rigidbody2D>().velocity = Vector3.down * 10;
 	}
 
 	void playRandom(){ // call this function to play a random sound
-		if (audio.isPlaying) return; // don't play a new sound while the last hasn't finished
+		if (GetComponent<AudioSource>().isPlaying) return; // don't play a new sound while the last hasn't finished
 
 		AudioSource.PlayClipAtPoint (explosions [Random.Range (0, explosions.Length - 1)], transform.position);
 	}

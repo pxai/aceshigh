@@ -21,7 +21,7 @@ public class GreyFoeController : MonoBehaviour {
 		GameObject freshGreyFoe = Instantiate(greyFoe, transform.position, Quaternion.identity) as GameObject;
 		
 		freshGreyFoe.transform.position = new Vector3 (Random.Range (1,10f),15f,2);
-		freshGreyFoe.rigidbody2D.velocity = Vector3.down * 5;
+		freshGreyFoe.GetComponent<Rigidbody2D>().velocity = Vector3.down * 5;
 		
 	}
 }

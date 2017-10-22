@@ -70,13 +70,13 @@ public class Hero : MonoBehaviour {
 			GameObject beam1 = Instantiate (projectile, transform.position, Quaternion.identity) as GameObject;
 			GameObject beam2 = Instantiate (projectile, transform.position, Quaternion.identity) as GameObject;
 			GameObject beam3 = Instantiate (projectile, transform.position, Quaternion.identity) as GameObject;
-			beam1.rigidbody2D.velocity = Vector3.up * projectileSpeed;
-			beam2.rigidbody2D.velocity = new Vector3(-0.2f,1,0) * projectileSpeed;
-			beam3.rigidbody2D.velocity = new Vector3(0.2f,1,0) * projectileSpeed;
+			beam1.GetComponent<Rigidbody2D>().velocity = Vector3.up * projectileSpeed;
+			beam2.GetComponent<Rigidbody2D>().velocity = new Vector3(-0.2f,1,0) * projectileSpeed;
+			beam3.GetComponent<Rigidbody2D>().velocity = new Vector3(0.2f,1,0) * projectileSpeed;
 
 		} else {
 			GameObject beam = Instantiate (projectile, transform.position, Quaternion.identity) as GameObject;
-			beam.rigidbody2D.velocity = Vector3.up * projectileSpeed;
+			beam.GetComponent<Rigidbody2D>().velocity = Vector3.up * projectileSpeed;
 		}
 
 	}
@@ -93,7 +93,7 @@ public class Hero : MonoBehaviour {
 		    	&& status == FLYING_STATUS) {
 			heroAnimator.SetBool("Dead",true);
 			status = SPAWN_STATUS;
-			audio.Play ();
+			GetComponent<AudioSource>().Play ();
 			Debug.Log ("Hit! ");
 			lifes--;
 			respawn ();

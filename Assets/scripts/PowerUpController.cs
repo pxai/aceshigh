@@ -23,7 +23,7 @@ public class PowerUpController : MonoBehaviour {
 		GameObject freshPowerUp = Instantiate(randomPowerUp, transform.position, Quaternion.identity) as GameObject;
 		
 		freshPowerUp.transform.position = new Vector3 (Random.Range (1,10f),15f,2);
-		freshPowerUp.rigidbody2D.velocity = Vector3.down * 2;
+		freshPowerUp.GetComponent<Rigidbody2D>().velocity = Vector3.down * 2;
 		Destroy (freshPowerUp,10);
 	}
 }

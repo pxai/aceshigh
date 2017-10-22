@@ -13,7 +13,7 @@ public class GreyFoe : MonoBehaviour {
 		// Avoid to add "(Clone)" to dynamically generated objects
 		name = name.Replace("(Clone)", "");
 		greyFoeAnimator = this.GetComponent<Animator>();
-		this.rigidbody2D.velocity = Vector3.down * 5;
+		this.GetComponent<Rigidbody2D>().velocity = Vector3.down * 5;
 		// In 8 sec the ship will be autodestroyed
 		Destroy(gameObject,8);
 		Invoke("turnAround", Random.Range (2,4));
@@ -32,7 +32,7 @@ public class GreyFoe : MonoBehaviour {
 	void turnAround () {
 		Debug.Log ("Turning around");
 		greyFoeAnimator.SetBool("Turn",true);
-		this.rigidbody2D.velocity = Vector3.up * 5;
+		this.GetComponent<Rigidbody2D>().velocity = Vector3.up * 5;
 		fire ();
 	}
 
@@ -48,8 +48,8 @@ public class GreyFoe : MonoBehaviour {
 		Hero hero = GameObject.FindObjectOfType (typeof(Hero)) as Hero;
 
 		GameObject beam = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
-		Vector3 toTarget = hero.rigidbody2D.position - transform.rigidbody2D.position ;
+		Vector3 toTarget = hero.GetComponent<Rigidbody2D>().position - transform.GetComponent<Rigidbody2D>().position ;
 
-		beam.rigidbody2D.velocity = toTarget.normalized * projectileSpeed;
+		beam.GetComponent<Rigidbody2D>().velocity = toTarget.normalized * projectileSpeed;
 	}
 }

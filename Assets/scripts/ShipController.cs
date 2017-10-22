@@ -21,7 +21,7 @@ public class ShipController : MonoBehaviour {
 		GameObject freshship = Instantiate(ship, transform.position, Quaternion.identity) as GameObject;
 
 		freshship.transform.position = new Vector3 (Random.Range (1,10f),15f,2);
-		freshship.rigidbody2D.velocity = Vector3.down * 3;
+		freshship.GetComponent<Rigidbody2D>().velocity = Vector3.down * 3;
 		
 	}
 }
